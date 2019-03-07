@@ -1,0 +1,4 @@
+[submodule "Modelica_DeviceDrivers"]
+	path = Modelica_DeviceDrivers
+	url = https://github.com/modelica/Modelica_DeviceDrivers
+	branch = master
