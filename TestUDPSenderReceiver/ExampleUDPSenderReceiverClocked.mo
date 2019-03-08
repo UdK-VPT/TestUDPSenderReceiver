@@ -9,9 +9,9 @@ model ExampleUDPSenderReceiverClocked
     nIntegerIn=1,
     nIntegerOut=1)
     annotation (Placement(transformation(extent={{14,4},{26,16}})));
-  KeyboardController keyCon
+  TestUDPSenderReceiver.KeyboardController keyCon
     annotation (Placement(transformation(extent={{-16,12},{-6,22}})));
-  Modelica.Blocks.Sources.Constant constq(k=1)
+  Modelica.Blocks.Sources.Constant const(k=1)
     annotation (Placement(transformation(extent={{-6,26},{-2,30}})));
   Modelica.Blocks.Math.Division division
     annotation (Placement(transformation(extent={{2,12},{10,20}})));
@@ -28,14 +28,12 @@ model ExampleUDPSenderReceiverClocked
     startTime=10)
     annotation (Placement(transformation(extent={{-16,-20},{-6,-10}})));
 equation
-  // UDP data exchange
-
   connect(keyCon.arrowUpDownReturn, division.u2) annotation (Line(points={{-5.5,
           20.5},{-2.75,20.5},{-2.75,13.6},{1.2,13.6}},color={0,0,127}));
   connect(division.y, UDPSenRec.reaTimFac) annotation (Line(points={{10.4,16},{12.15,
           16},{12.15,13.75},{14.75,13.75}},
                                          color={0,0,127}));
-  connect(constq.y, division.u1) annotation (Line(points={{-1.8,28},{1.2,28},{1.2,
+  connect(const.y, division.u1) annotation (Line(points={{-1.8,28},{1.2,28},{1.2,
           18.4}},color={0,0,127}));
 
   connect(sine.y, UDPSenRec.uReal[1]) annotation (Line(points={{-5.5,3},{10,3},{

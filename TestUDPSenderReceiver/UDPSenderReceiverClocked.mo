@@ -70,7 +70,9 @@ equation
       points={{-6,15.2},{-6,10.8}}));
   end if;
 
-  if nRealIn == 0 and nRealIn > 0 then
+  if nRealIn == 0 and nIntegerIn > 0 then
+    connect(packager.pkgOut, addInteger.pkgIn) annotation (Line(
+      points={{-6,15.2},{-6,-15.2}}));
   end if;
 
   if nRealIn > 0 and nIntegerIn > 0 then
@@ -84,6 +86,8 @@ equation
   end if;
 
   if nIntegerIn == 0 and nRealIn > 0 then
+    connect(uDPSend.pkgIn, addReal.pkgOut[1])
+      annotation (Line(points={{-6,-41.2},{-6,-10.8}}, color={0,0,0}));
   end if;
 
   // Outputs
@@ -98,6 +102,8 @@ equation
   end if;
 
   if nRealOut == 0 and nIntegerOut > 0 then
+    connect(uDPReceive.pkgOut,getInteger.pkgIn) annotation (Line(
+      points={{24,39.2},{24,-15.2}}));
   end if;
 
   connect(sampleReal.y, addReal.u)

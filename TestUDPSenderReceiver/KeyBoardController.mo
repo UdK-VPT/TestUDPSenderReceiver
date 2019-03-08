@@ -25,7 +25,7 @@ model KeyboardController
   Modelica_DeviceDrivers.Blocks.InputDevices.KeyboardInput keyboard(
     sampleTime=1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BooleanInputController booInpCon2(
+  TestUDPSenderReceiver.BooleanInputController booInpCon2(
     y_start=1.0,
     ampFac=1.0,
     y_min=minArrowLeft,

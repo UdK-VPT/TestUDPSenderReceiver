@@ -51,7 +51,9 @@ equation
     annotation (Line(points={{-90,0},{-18,0}}, color={0,0,127}));
   end if;
 
-  if nRealIn == 0 and nRealIn > 0 then
+  if nRealIn == 0 and nIntegerIn > 0 then
+    connect(packager.pkgOut, addInteger.pkgIn) annotation (Line(
+          points={{-6,15.2},{-6,-15.2}}));
   end if;
 
   if nRealIn > 0 and nIntegerIn > 0 then
@@ -67,6 +69,8 @@ equation
   end if;
 
   if nIntegerIn == 0 and nRealIn > 0 then
+    connect(uDPSend.pkgIn, addReal.pkgOut[1])
+      annotation (Line(points={{-6,-41.2},{-6,-10.8}}, color={0,0,0}));
   end if;
 
   // Outputs
@@ -81,11 +85,13 @@ equation
     connect(getReal.pkgOut[1], getInteger.pkgIn)
       annotation (Line(points={{24,-10.8},{24,-35.2}}, color={0,0,0}));
     connect(getInteger.y, yInteger)
-      annotation (Line(points={{35,-46},{62,-46},{62,-26},{90,-26}},
-                                                   color={255,127,0}));
+      annotation (Line(points={{35,-46},{62,-46},{62,-26},{90,-26}},color={255,127,0}));
   end if;
-
   if nRealOut == 0 and nIntegerOut > 0 then
+    connect(uDPReceive.pkgOut,getInteger.pkgIn)
+      annotation (Line(points={{24,39.2},{24,-15.2}}));
+    connect(getInteger.y, yInteger)
+      annotation (Line(points={{35,-46},{62,-46},{62,-26},{90,-26}},color={255,127,0}));
   end if;
 
   if useReaTimFac == true then
