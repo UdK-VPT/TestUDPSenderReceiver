@@ -1,4 +1,4 @@
-# <codecell> paths and info
+# paths and info
 import os, sys
 homeDir = os.environ['HOMEPATH']
 jmodDir = os.environ['JMODELICA_HOME']
@@ -15,16 +15,12 @@ print(sys.version)
 print(all(os.path.isfile(os.path.join(moLib, "package.mo")) for moLib in moLibs))
 print(os.getcwd())
 
-# necessary for large models
-import pymodelica
-pymodelica.environ['JVM_ARGS'] = '-Xmx11048m'
-
 # <codecell> compile model to fmu
 from pymodelica import compile_fmu
 model_name = 'TestUDPSenderReceiver.ExampleUDPSenderReceiverFunctions'
 my_fmu = compile_fmu(model_name, moLibs)
 
-# <codecell> simulate the fmu and store results
+# simulate the fmu and store results
 from pyfmi import load_fmu
 
 myModel = load_fmu(my_fmu)
@@ -41,7 +37,7 @@ opts['CVode_options']['rtol'] = 1e-5
 
 res = myModel.simulate(start_time=0.0, final_time=120, options=opts)
 
-# <codecell> plotting of the results
+# plotting of the results
 import pylab as P
 fig = P.figure(1)
 P.clf()
